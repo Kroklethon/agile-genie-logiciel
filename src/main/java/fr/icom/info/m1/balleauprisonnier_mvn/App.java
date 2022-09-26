@@ -1,4 +1,4 @@
-package fr.icom.info.m1.balleauprisonnier_mvn;
+package fr.icom.info.m1.balleauprisonnier_fx;
 
 
 import javafx.application.Application;
@@ -20,6 +20,8 @@ public class App extends Application
 	 * @see http://docs.oracle.com/javafx/2/scenegraph/jfxpub-scenegraph.htm
 	 * 
 	 */
+
+
 	@Override
 	public void start(Stage stage) throws Exception 
 	{
@@ -34,6 +36,7 @@ public class App extends Application
         root.getChildren().add( gameField );
 		root.getChildren().add(gameField.getJoueurs()[0].sprite);
 		root.getChildren().add(gameField.getJoueurs()[1].sprite);
+		root.getChildren().add(gameField.getJoueurs2()[0].sprite);
 
         // On ajoute la scene a la fenetre et on affiche
         stage.setScene( scene );

@@ -1,4 +1,4 @@
-package fr.icom.info.m1.balleauprisonnier_mvn;
+package fr.icom.info.m1.balleauprisonnier_fx;
 
 
 import java.util.ArrayList;
@@ -19,6 +19,9 @@ public class Field extends Canvas {
 	
 	/** Joueurs */
 	Player [] joueurs = new Player[2];
+	Player [] joueurs2 = new Player[2];
+
+	Projectile projectile;
 	/** Couleurs possibles */
 	String[] colorMap = new String[] {"blue", "green", "orange", "purple", "yellow"};
 	/** Tableau traçant les evenements */
@@ -48,11 +51,14 @@ public class Field extends Canvas {
         gc = this.getGraphicsContext2D();
         
         /** On initialise le terrain de jeu */
-    	joueurs[0] = new Player(gc, colorMap[0], w/2, h-50, "bottom");
+    	joueurs[0] = new HumanPlayer(gc, colorMap[0], w/2, h-50, "bottom");
     	joueurs[0].display();
 
-    	joueurs[1] = new Player(gc, colorMap[1], w/2, 20, "top");
+    	joueurs[1] = new AIPlayer(gc, colorMap[0], w/2, 20, "top");
     	joueurs[1].display();
+
+		joueurs2[0] = new AIPlayer(gc,colorMap[1], w/3, 20, "top");
+		joueurs2[0].display();
 
 
 	    /** 
@@ -122,7 +128,7 @@ public class Field extends Canvas {
 	        		{
 	        			joueurs[i].turnRight();	        			
 	        		}
-	        		if (i==1 && input.contains("A"))
+	        		if (i==1 && input.contains("Q"))
 	        		{
 	        			joueurs[i].moveLeft();
 	        		} 
@@ -130,7 +136,7 @@ public class Field extends Canvas {
 	        		{
 	        			joueurs[i].moveRight();	        			
 	        		}
-	        		if (i==1 && input.contains("W"))
+	        		if (i==1 && input.contains("Z"))
 	        		{
 	        			joueurs[i].turnLeft();
 	        		} 
@@ -138,11 +144,18 @@ public class Field extends Canvas {
 	        		{
 	        			joueurs[i].turnRight();	        			
 	        		}
-	        		if (input.contains("SPACE")){
-	        			joueurs[i].shoot();
+	        		if (i==1 && input.contains("SPACE")){
+	        			projectile = joueurs[i].shoot();
+					}
+					if(i==0 && input.contains("SHIFT")) {
+						projectile = joueurs[i].shoot();
 					}
 
-	        		
+
+					if(projectile != null) {
+						projectile.display();
+					}
+
 	        		joueurs[i].display();
 	    	    }
 	    	}
@@ -152,5 +165,8 @@ public class Field extends Canvas {
 
 	public Player[] getJoueurs() {
 		return joueurs;
+	}
+	public Player[] getJoueurs2(){
+		return joueurs2;
 	}
 }
