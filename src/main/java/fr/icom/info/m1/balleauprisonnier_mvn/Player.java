@@ -20,6 +20,7 @@ public class Player
 	  final double y; 	  // position verticale du joueur
 	  double angle = 90; // rotation du joueur, devrait toujour être en 0 et 180
 	  double step;    // pas d'un joueur
+	  String side;
 	  String playerColor;
 	  
 	  // On une image globale du joueur 
@@ -43,6 +44,7 @@ public class Player
 	    y = yInit;
 	    graphicsContext = gc;
 	    playerColor=color;
+		this.side = side;
 	    
 	    angle = 0;
 
@@ -151,8 +153,9 @@ public class Player
 
 	  Projectile shoot(){
 		  sprite.playShoot();
+		  double newAngle;
 		  //On crée un projectile
-		  Projectile projectile = new Projectile(graphicsContext, x, y, angle, 1);
+		  Projectile projectile = new Projectile(graphicsContext, x, y, angle, 3, side);
 		  return projectile;
 	  }
 	  
