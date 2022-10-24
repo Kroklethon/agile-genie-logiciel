@@ -1,8 +1,7 @@
-package fr.icom.info.m1.balleauprisonnier_mvn;
+package fr.icom.info.m1.balleauprisonnier_mvn.model;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.transform.Rotate;
-import jdk.internal.org.jline.reader.SyntaxError;
 
 public class Projectile {
 
@@ -33,7 +32,7 @@ public class Projectile {
         ball = new javafx.scene.image.Image("assets/ball.png");
     }
 
-    void display()
+    public void display()
     {
         move();
         graphicsContext.save(); // saves the current state on stack, including the current transform

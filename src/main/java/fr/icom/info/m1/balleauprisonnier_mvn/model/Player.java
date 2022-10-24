@@ -1,4 +1,4 @@
-package fr.icom.info.m1.balleauprisonnier_mvn;
+package fr.icom.info.m1.balleauprisonnier_mvn.model;
 
 
 import javafx.scene.canvas.GraphicsContext;
@@ -25,7 +25,7 @@ public class Player
 	  
 	  // On une image globale du joueur 
 	  Image directionArrow;
-	  Sprite sprite;
+	  public Sprite sprite;
 	  ImageView PlayerDirectionArrow;
 	  
 	  GraphicsContext graphicsContext;
@@ -37,7 +37,7 @@ public class Player
 	   * @param color couleur du joueur
 	   * @param yInit position verticale
 	   */
-	  Player(GraphicsContext gc, String color, int xInit, int yInit, String side)
+	  public Player(GraphicsContext gc, String color, int xInit, int yInit, String side)
 	  {
 		// Tous les joueurs commencent au centre du canvas, 
 	    x = xInit;               
@@ -81,7 +81,7 @@ public class Player
 	  /**
 	   *  Affichage du joueur
 	   */
-	  void display()
+	  public void display()
 	  {
 		  graphicsContext.save(); // saves the current state on stack, including the current transform
 	      rotate(graphicsContext, angle, x + directionArrow.getWidth() / 2, y + directionArrow.getHeight() / 2);
@@ -98,7 +98,7 @@ public class Player
 	   *  Deplacement du joueur vers la gauche, on cantonne le joueur sur le plateau de jeu
 	   */
 	 
-	  void moveLeft() 
+	  public void moveLeft()
 	  {	    
 	    if (x > 10 && x < 520) 
 	    {
@@ -110,7 +110,7 @@ public class Player
 	  /**
 	   *  Deplacement du joueur vers la droite
 	   */
-	  void moveRight() 
+	  public void moveRight()
 	  {
 	    if (x > 10 && x < 520) 
 	    {
@@ -123,7 +123,7 @@ public class Player
 	  /**
 	   *  Rotation du joueur vers la gauche
 	   */
-	  void turnLeft() 
+	  public void turnLeft()
 	  {
 	    if (angle > 0 && angle < 180) 
 	    {
@@ -139,7 +139,7 @@ public class Player
 	  /**
 	   *  Rotation du joueur vers la droite
 	   */
-	  void turnRight() 
+	  public void turnRight()
 	  {
 	    if (angle > 0 && angle < 180) 
 	    {
@@ -151,7 +151,7 @@ public class Player
 	  }
 
 
-	  Projectile shoot(){
+	  public Projectile shoot(){
 		  sprite.playShoot();
 		  double newAngle;
 		  //On crée un projectile

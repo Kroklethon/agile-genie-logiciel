@@ -1,6 +1,8 @@
-package fr.icom.info.m1.balleauprisonnier_mvn;
+package fr.icom.info.m1.balleauprisonnier_mvn.view;
 
 
+import fr.icom.info.m1.balleauprisonnier_mvn.controller.Controller;
+import fr.icom.info.m1.balleauprisonnier_mvn.model.Field;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -21,6 +23,9 @@ public class  App extends Application
 	 * 
 	 */
 
+	public Group root;
+	public Scene scene;
+
 
 	@Override
 	public void start(Stage stage) throws Exception 
@@ -28,11 +33,12 @@ public class  App extends Application
 		// Nom de la fenetre
         stage.setTitle("BalleAuPrisonnier");
 
-        Group root = new Group();
-        Scene scene = new Scene( root );
+        root = new Group();
+        scene = new Scene( root );
 
         // On cree le terrain de jeu et on l'ajoute a la racine de la scene
-        Field gameField = new Field(scene, 600, 600 );
+        Field gameField = Field.getInstance();
+		Controller controller = new Controller();
         root.getChildren().add( gameField );
 		root.getChildren().add(gameField.getJoueurs()[0].sprite);
 		root.getChildren().add(gameField.getJoueurs()[1].sprite);
