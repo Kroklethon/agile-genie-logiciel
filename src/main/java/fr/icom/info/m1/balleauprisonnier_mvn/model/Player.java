@@ -71,8 +71,8 @@ public class Player
         //directionArrow = sprite.getClip().;
 
 	    // Tous les joueurs ont une vitesse aleatoire entre 0.0 et 1.0
-		Random randomGenerator = new Random();
-        step = randomGenerator.nextFloat();
+		
+        step = 2;
 
         // Pour commencer les joueurs ont une vitesse / un pas fixe
         //step = 1;
