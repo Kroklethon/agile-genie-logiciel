@@ -29,7 +29,8 @@ public class Player
 	  ImageView PlayerDirectionArrow;
 	  
 	  GraphicsContext graphicsContext;
-	  
+	  boolean hasTheBall = false;
+	  Projectile ball;
 	  /**
 	   * Constructeur du Joueur
 	   * 
@@ -87,6 +88,9 @@ public class Player
 	      rotate(graphicsContext, angle, x + directionArrow.getWidth() / 2, y + directionArrow.getHeight() / 2);
 		  graphicsContext.drawImage(directionArrow, x, y);
 		  graphicsContext.restore(); // back to original state (before rotation)
+		  if(ball != null){
+			ball.updatePosition(x, y, angle);
+		  }
 	  }
 
 	  private void rotate(GraphicsContext gc, double angle, double px, double py) {
@@ -153,10 +157,11 @@ public class Player
 
 	  public Projectile shoot(){
 		  sprite.playShoot();
-		  double newAngle;
-		  //On crée un projectile
-		  Projectile projectile = new Projectile(graphicsContext, x, y, angle, 3, side);
-		  return projectile;
+		  ball.setSpeed(3);
+		  ball.setAngle(angle);
+		  Projectile tmpball = ball;
+		  setBall(false);
+		  return tmpball;
 	  }
 	  
 	  /**
@@ -174,5 +179,21 @@ public class Player
 		  sprite.setX(x);
 		  sprite.setY(y);
 	  }
+
+	  public void setBall(boolean hasBall){
+		  this.hasTheBall = hasBall;
+		  if(hasBall){
+			createBall();
+		  }else{
+			this.ball = null;
+		  }
+	  }
+
+	  private void createBall(){
+		  this.ball = new Projectile(graphicsContext, x, y, angle,0, playerColor);
+	  }
 	  
+	  public Projectile getBall(){
+		  return ball;
+	  }
 }

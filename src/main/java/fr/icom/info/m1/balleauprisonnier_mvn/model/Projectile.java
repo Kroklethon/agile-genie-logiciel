@@ -8,7 +8,8 @@ public class Projectile {
     double x;
     double y;
     double angle;
-    double speed;
+    double speedX;
+    double speedY;
 
     Sprite sprite;
 
@@ -27,7 +28,8 @@ public class Projectile {
         this.x = x;
         this.y = y;
         this.angle = angle;
-        this.speed = speed;
+        this.speedX = speed;
+        this.speedY = speed;
         this.side = side;
         ball = new javafx.scene.image.Image("assets/ball.png");
     }
@@ -48,17 +50,38 @@ public class Projectile {
 
     void move(){
         int rotation;
-        System.out.println(side);
         if(side.equals("top")){
             rotation = 90;
         }
         else{
             rotation = 270;
         }
+        // Collision with the walls
+        if (x < 0 || x > 600 - ball.getWidth()) {
+            angle = -angle;
+        }
+        if (y < 0 || y > 600 - ball.getHeight()) {
+            angle = 180 - angle;
+        }
         final double[] vector = new double[2];
         vector[0] = Math.cos(Math.toRadians(angle+rotation));
         vector[1] = Math.sin(Math.toRadians(angle+rotation));
-        x += vector[0] * speed;
-        y += vector[1] * speed;
+        x += vector[0] * speedX;
+        y += vector[1] * speedY;
+    }
+
+    public void updatePosition(double x, double y, double angle){
+        this.x = x;
+        this.y = y;
+        this.angle = angle;
+    }
+
+    public void setSpeed(double speed){
+        this.speedX = speed;
+        this.speedY = speed;
+    }
+
+    public void setAngle(double angle){
+        this.angle = angle;
     }
 }

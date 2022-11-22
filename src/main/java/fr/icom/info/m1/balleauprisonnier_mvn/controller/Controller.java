@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import fr.icom.info.m1.balleauprisonnier_mvn.model.*;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
@@ -89,10 +88,10 @@ public class Controller{
 						if (i == 1 && input.contains("S")) {
 							joueurs[i].turnRight();
 						}
-						if (i == 1 && input.contains("SPACE")) {
+						if (i == 1 && input.contains("SPACE") && joueurs[i].getBall() != null){
 							projectile = joueurs[i].shoot();
 						}
-						if (i == 0 && input.contains("SHIFT")) {
+						if (i == 0 && input.contains("SHIFT") && joueurs[i].getBall() != null) {
 							projectile = joueurs[i].shoot();
 						}
 

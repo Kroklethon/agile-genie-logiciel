@@ -1,18 +1,7 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.model;
 
-import java.util.ArrayList;
-
-import fr.icom.info.m1.balleauprisonnier_mvn.model.AIPlayer;
-import fr.icom.info.m1.balleauprisonnier_mvn.model.HumanPlayer;
-import fr.icom.info.m1.balleauprisonnier_mvn.model.Player;
-import fr.icom.info.m1.balleauprisonnier_mvn.model.Projectile;
-import javafx.animation.AnimationTimer;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 
 /**
  * Classe gerant le terrain de jeu.
@@ -60,6 +49,9 @@ public class Field extends Canvas {
 
         joueurs2[0] = new AIPlayer(gc,colorMap[1], w/3, 20, "top");
         joueurs2[0].display();
+
+        joueurs[0].setBall(true);
+        projectile = joueurs[0].getBall();
     }
 
     public static Field getInstance(){
