@@ -41,8 +41,9 @@ public class  App extends Application
 		Controller controller = new Controller();
         root.getChildren().add( gameField );
 		root.getChildren().add(gameField.getJoueurs()[0].sprite);
-		root.getChildren().add(gameField.getJoueurs()[1].sprite);
-		root.getChildren().add(gameField.getJoueurs2()[0].sprite);
+		root.getChildren().add(gameField.getjoueursTop()[0].sprite);
+		root.getChildren().add(gameField.getjoueursTop()[1].sprite);
+
 
         // On ajoute la scene a la fenetre et on affiche
         stage.setScene( scene );

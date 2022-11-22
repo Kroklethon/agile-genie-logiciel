@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
-import java.util.Random;
 
 /**
  * 
@@ -195,5 +194,13 @@ public class Player
 	  
 	  public Projectile getBall(){
 		  return ball;
+	  }
+
+	  public double getX(){
+		  return x;
+	  }
+
+	  public double getY(){
+		  return y;
 	  }
 }

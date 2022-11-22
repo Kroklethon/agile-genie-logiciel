@@ -61,7 +61,9 @@ public class Projectile {
             angle = -angle;
         }
         if (y < 0 || y > 600 - ball.getHeight()) {
-            angle = 180 - angle;
+            // give the ball to the closest player
+            String side = y < 0 ? "top" : "bottom";
+            Field.getInstance().getClosestPlayer(x, y, side).setBall(true);
         }
         final double[] vector = new double[2];
         vector[0] = Math.cos(Math.toRadians(angle+rotation));

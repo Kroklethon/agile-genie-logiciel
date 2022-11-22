@@ -11,8 +11,8 @@ public class Field extends Canvas {
 
     private static Field instance;
     /** Joueurs */
-    Player[] joueurs = new Player[2];
-    Player [] joueurs2 = new Player[2];
+    Player[] joueurs = new Player[1];
+    Player [] joueursTop = new Player[2];
 
     Projectile projectile;
     /** Couleurs possibles */
@@ -44,11 +44,11 @@ public class Field extends Canvas {
         joueurs[0] = new HumanPlayer(gc, colorMap[0], w/2, h-50, "bottom");
         joueurs[0].display();
 
-        joueurs[1] = new AIPlayer(gc, colorMap[0], w/2, 20, "top");
-        joueurs[1].display();
+        joueursTop[1] = new AIPlayer(gc, colorMap[0], w/2, 20, "top");
+        joueursTop[1].display();
 
-        joueurs2[0] = new AIPlayer(gc,colorMap[1], w/3, 20, "top");
-        joueurs2[0].display();
+        joueursTop[0] = new AIPlayer(gc,colorMap[1], w/3, 20, "top");
+        joueursTop[0].display();
 
         joueurs[0].setBall(true);
         projectile = joueurs[0].getBall();
@@ -68,8 +68,8 @@ public class Field extends Canvas {
     public Player[] getJoueurs() {
         return joueurs;
     }
-    public Player[] getJoueurs2(){
-        return joueurs2;
+    public Player[] getjoueursTop(){
+        return joueursTop;
     }
 
     public int width() {
@@ -81,5 +81,29 @@ public class Field extends Canvas {
 
     public Projectile getProjectile() {
         return projectile;
+    }
+
+    public Player getClosestPlayer(double x, double y, String side){
+        float distanceMin = -1;
+        Player closestPlayer = null;
+        if(side.equals("top")){
+            for (Player p : Field.instance.getjoueursTop()) {
+                float distance = (float) Math.sqrt(Math.pow(p.getX() - x, 2) + Math.pow(p.getY() - y, 2));
+                if(distanceMin == -1 || distance < distanceMin){
+                    distanceMin = distance;
+                    closestPlayer = p;
+                }
+            }
+        }
+        else{
+            for (Player p : Field.instance.getJoueurs()) {
+                float distance = (float) Math.sqrt(Math.pow(p.getX() - x, 2) + Math.pow(p.getY() - y, 2));
+                if(distanceMin == -1 || distance < distanceMin){
+                    distanceMin = distance;
+                    closestPlayer = p;
+                }
+            }
+        }
+        return closestPlayer;
     }
 }
