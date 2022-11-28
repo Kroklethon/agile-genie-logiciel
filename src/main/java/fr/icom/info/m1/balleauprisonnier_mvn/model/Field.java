@@ -51,13 +51,13 @@ public class Field extends Canvas {
         joueurs[1] = new AIPlayer(gc, colorMap[0], 2*w/3, h-100, "bottom");
         joueurs[1].display();
 
-        joueursTop[1] = new AIPlayer(gc, colorMap[0], 2*w/3, 20, "top");
+        joueursTop[1] = new AIPlayer(gc, colorMap[1], 2*w/3, 20, "top");
         joueursTop[1].display();
 
         joueursTop[0] = new HumanPlayer(gc,colorMap[1], w/3, 20, "top");
         joueursTop[0].display();
 
-        joueurs[0].setBall(new Projectile(gc, joueurs[0].x, joueurs[0].y, joueurs[0].angle, 0,  joueurs[0].playerColor));
+        joueurs[0].setBall(new Projectile(gc, joueurs[0].getX(), joueurs[0].getY(), joueurs[0].getAngle(), 0,  joueurs[0].getPlayerColor()));
         projectile = joueurs[0].getBall();
 
         for(Player p : joueursTop){

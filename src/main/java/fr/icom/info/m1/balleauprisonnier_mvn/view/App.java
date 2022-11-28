@@ -40,9 +40,10 @@ public class  App extends Application
         Field gameField = Field.getInstance();
 		Controller controller = new Controller();
         root.getChildren().add( gameField );
-		root.getChildren().add(gameField.getJoueurs()[0].sprite);
-		root.getChildren().add(gameField.getjoueursTop()[0].sprite);
-		root.getChildren().add(gameField.getjoueursTop()[1].sprite);
+		root.getChildren().add(gameField.getJoueurs()[0].getSprite());
+		root.getChildren().add(gameField.getjoueursTop()[0].getSprite());
+		root.getChildren().add(gameField.getjoueursTop()[1].getSprite());
+		root.getChildren().add(gameField.getJoueurs()[1].getSprite());
 
 
         // On ajoute la scene a la fenetre et on affiche
