@@ -45,10 +45,7 @@ public class Player
 	    graphicsContext = gc;
 	    playerColor=color;
 		this.side = side;
-	    
 	    angle = 0;
-
-	    // On charge la representation du joueur
         if(side=="top"){
         	directionArrow = new Image("assets/PlayerArrowDown.png");
 		}
@@ -157,9 +154,14 @@ public class Player
 	  public Projectile shoot(){
 		  sprite.playShoot();
 		  ball.setSpeed(3);
-		  ball.setAngle(angle);
+		  if(side == "bottom"){
+			  ball.setAngle(angle);
+		  }
+		  else{
+			  ball.setAngle(angle+ 180);
+		  }
 		  Projectile tmpball = ball;
-		  setBall(false);
+		  ball = null;
 		  return tmpball;
 	  }
 	  
@@ -179,19 +181,9 @@ public class Player
 		  sprite.setY(y);
 	  }
 
-	  public void setBall(boolean hasBall){
-		  this.hasTheBall = hasBall;
-		  if(hasBall){
-			createBall();
-		  }else{
-			this.ball = null;
-		  }
-	  }
-
-	  private void createBall(){
-		  this.ball = new Projectile(graphicsContext, x, y, angle,0, playerColor);
-	  }
-	  
+	  public void setBall(Projectile ball){
+		  this.ball = ball;
+		}
 	  public Projectile getBall(){
 		  return ball;
 	  }
@@ -202,5 +194,9 @@ public class Player
 
 	  public double getY(){
 		  return y;
+	  }
+
+	  public double getAngle(){
+		  return angle;
 	  }
 }

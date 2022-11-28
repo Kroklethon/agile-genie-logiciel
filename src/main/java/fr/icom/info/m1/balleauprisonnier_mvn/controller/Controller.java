@@ -52,7 +52,10 @@ public class Controller{
 			 *
 			 */
 			new AnimationTimer() {
-				Player[] joueurs = field.getJoueurs();
+				Player[] joueurs = field.getJoueursHumain();
+				Player[] joueursIA = field.getJoueursIA();
+
+				
 				int width = field.width();
 				int height = field.height();
 
@@ -101,6 +104,7 @@ public class Controller{
 						}
 
 						joueurs[i].display();
+						joueursIA[i].display();
 					}
 				}
 			}.start(); // On lance la boucle de rafraichissement

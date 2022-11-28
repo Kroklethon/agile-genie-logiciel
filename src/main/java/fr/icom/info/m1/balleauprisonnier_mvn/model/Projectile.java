@@ -63,15 +63,23 @@ public class Projectile {
         if (y < 0 || y > 600 - ball.getHeight()) {
             // give the ball to the closest player
             String side = y < 0 ? "top" : "bottom";
-            Field.getInstance().getClosestPlayer(x, y, side).setBall(true);
+            Player closestPlayer = Field.getInstance().getClosestPlayer(x, y, side);
+            closestPlayer.setBall(this);
+            this.setSpeed(0);
+            if(side == "top"){
+                this.updatePosition(closestPlayer.getX(), closestPlayer.getY(), closestPlayer.getAngle());
+            }
+            else if(side == "bottom"){
+                this.updatePosition(closestPlayer.getX(), closestPlayer.getY(), closestPlayer.getAngle());
+            }
         }
+
         final double[] vector = new double[2];
         vector[0] = Math.cos(Math.toRadians(angle+rotation));
         vector[1] = Math.sin(Math.toRadians(angle+rotation));
         x += vector[0] * speedX;
         y += vector[1] * speedY;
     }
-
     public void updatePosition(double x, double y, double angle){
         this.x = x;
         this.y = y;

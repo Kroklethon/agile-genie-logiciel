@@ -11,8 +11,12 @@ public class Field extends Canvas {
 
     private static Field instance;
     /** Joueurs */
-    Player[] joueurs = new Player[1];
+    Player[] joueurs = new Player[2];
     Player [] joueursTop = new Player[2];
+
+    Player[] joueursHumain = new Player[2];
+    Player[] joueursIA = new Player[2];
+
 
     Projectile projectile;
     /** Couleurs possibles */
@@ -41,17 +45,41 @@ public class Field extends Canvas {
         gc = this.getGraphicsContext2D();
 
         /** On initialise le terrain de jeu */
-        joueurs[0] = new HumanPlayer(gc, colorMap[0], w/2, h-50, "bottom");
+        joueurs[0] = new HumanPlayer(gc, colorMap[0], w/3, h-100, "bottom");
         joueurs[0].display();
 
-        joueursTop[1] = new AIPlayer(gc, colorMap[0], w/2, 20, "top");
+        joueurs[1] = new AIPlayer(gc, colorMap[0], 2*w/3, h-100, "bottom");
+        joueurs[1].display();
+
+        joueursTop[1] = new AIPlayer(gc, colorMap[0], 2*w/3, 20, "top");
         joueursTop[1].display();
 
-        joueursTop[0] = new AIPlayer(gc,colorMap[1], w/3, 20, "top");
+        joueursTop[0] = new HumanPlayer(gc,colorMap[1], w/3, 20, "top");
         joueursTop[0].display();
 
-        joueurs[0].setBall(true);
+        joueurs[0].setBall(new Projectile(gc, joueurs[0].x, joueurs[0].y, joueurs[0].angle, 0,  joueurs[0].playerColor));
         projectile = joueurs[0].getBall();
+
+        for(Player p : joueursTop){
+            if(p instanceof HumanPlayer){
+                joueursHumain[0] = p;
+            }
+        }
+        for(Player p : joueurs){
+            if(p instanceof HumanPlayer){
+                joueursHumain[1] = p;
+            }
+        }
+        for(Player p : joueursTop){
+            if(p instanceof AIPlayer){
+                joueursIA[0] = p;
+            }
+        }
+        for(Player p : joueurs){
+            if(p instanceof AIPlayer){
+                joueursIA[1] = p;
+            }
+        }
     }
 
     public static Field getInstance(){
@@ -72,11 +100,23 @@ public class Field extends Canvas {
         return joueursTop;
     }
 
+    public Player[] getJoueursHumain() {
+        return joueursHumain;
+    }
+
+    public Player[] getJoueursIA() {
+        return joueursIA;
+    }
+
     public int width() {
         return width;
     }
     public int height(){
         return height;
+    }
+
+    public void setProjectile(Projectile projectile) {
+        this.projectile = projectile;
     }
 
     public Projectile getProjectile() {
