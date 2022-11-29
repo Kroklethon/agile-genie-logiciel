@@ -155,6 +155,7 @@ public class AIPlayer implements Player{
 
     public void setBall(Projectile ball){
         this.ball = ball;
+        ball.setLastOwner(this);
       }
     public Projectile getBall(){
         return ball;
@@ -179,5 +180,9 @@ public class AIPlayer implements Player{
     public String getPlayerColor(){
         return playerColor;
     }
+
+    public String getSide(){
+		return side;
+	}
 }
 

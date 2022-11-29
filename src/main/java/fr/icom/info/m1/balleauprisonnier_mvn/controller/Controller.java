@@ -67,44 +67,67 @@ public class Controller{
 
 					// Deplacement et affichage des joueurs
 					for (int i = 0; i < joueurs.length; i++) {
-						if (i == 0 && input.contains("LEFT")) {
-							joueurs[i].moveLeft();
-						}
-						if (i == 0 && input.contains("RIGHT")) {
-							joueurs[i].moveRight();
-						}
-						if (i == 0 && input.contains("UP")) {
-							joueurs[i].turnLeft();
-						}
-						if (i == 0 && input.contains("DOWN")) {
-							joueurs[i].turnRight();
-						}
-						if (i == 1 && input.contains("Q")) {
-							joueurs[i].moveLeft();
-						}
-						if (i == 1 && input.contains("D")) {
-							joueurs[i].moveRight();
-						}
-						if (i == 1 && input.contains("Z")) {
-							joueurs[i].turnLeft();
-						}
-						if (i == 1 && input.contains("S")) {
-							joueurs[i].turnRight();
-						}
-						if (i == 1 && input.contains("SPACE") && joueurs[i].getBall() != null) {
-							projectile = joueurs[i].shoot();
-						}
-						if (i == 0 && input.contains("SHIFT") && joueurs[i].getBall() != null) {
-							projectile = joueurs[i].shoot();
-						}
+						if(joueurs[i] != null){
+							if (i == 0 && input.contains("LEFT")) {
+								joueurs[i].moveLeft();
+							}
+							if (i == 0 && input.contains("RIGHT")) {
+								joueurs[i].moveRight();
+							}
+							if (i == 0 && input.contains("UP")) {
+								joueurs[i].turnLeft();
+							}
+							if (i == 0 && input.contains("DOWN")) {
+								joueurs[i].turnRight();
+							}
+							if (i == 1 && input.contains("Q")) {
+								joueurs[i].moveLeft();
+							}
+							if (i == 1 && input.contains("D")) {
+								joueurs[i].moveRight();
+							}
+							if (i == 1 && input.contains("Z")) {
+								joueurs[i].turnLeft();
+							}
+							if (i == 1 && input.contains("S")) {
+								joueurs[i].turnRight();
+							}
+							if (i == 1 && input.contains("SPACE") && joueurs[i].getBall() != null) {
+								projectile = joueurs[i].shoot();
+							}
+							if (i == 0 && input.contains("SHIFT") && joueurs[i].getBall() != null) {
+								projectile = joueurs[i].shoot();
+							}
 
 
-						if (projectile != null) {
-							projectile.display();
-						}
+							if (projectile != null) {
+								projectile.display();
+							}
+							for(Player joueur : joueursIA) {
+								if( joueur != null){
+									if(projectile.collide(joueur) && projectile.getLastOwner() != joueur && joueur.getBall() == null) {
+										System.out.println("Collision");
+										// On detruit le joueur
+										Field.getInstance().destroyPlayer(joueur);
+									}
+								}
+							}
+							for(Player joueur : joueurs) {
+								if( joueur != null){
+									if(projectile.collide(joueur) && projectile.getLastOwner() != joueur && joueur.getBall() == null) {
+										System.out.println("Collision");
+										// On detruit le joueur
+										Field.getInstance().destroyPlayer(joueur);
+									}
+								}
+							}
 
-						joueurs[i].display();
-						joueursIA[i].display();
+							joueurs[i].display();
+							if(joueursIA[i] != null) {
+								joueursIA[i].display();
+							}
+							
+						}
 					}
 				}
 			}.start(); // On lance la boucle de rafraichissement

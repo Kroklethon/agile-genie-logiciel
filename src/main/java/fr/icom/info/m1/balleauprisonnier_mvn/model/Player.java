@@ -60,4 +60,6 @@ public interface Player
 	  public Sprite getSprite();
 
 	  public String getPlayerColor();
+
+	  public String getSide();
 }

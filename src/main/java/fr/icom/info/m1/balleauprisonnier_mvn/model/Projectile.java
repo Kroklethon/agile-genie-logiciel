@@ -18,6 +18,9 @@ public class Projectile {
     javafx.scene.image.Image ball;
 
     String side;
+    double radius;
+
+    Player lastOwner;
 
 
 
@@ -32,6 +35,8 @@ public class Projectile {
         this.speedY = speed;
         this.side = side;
         ball = new javafx.scene.image.Image("assets/ball.png");
+        radius = ball.getWidth() / 2;
+
     }
 
     public void display()
@@ -66,12 +71,8 @@ public class Projectile {
             Player closestPlayer = Field.getInstance().getClosestPlayer(x, y, side);
             closestPlayer.setBall(this);
             this.setSpeed(0);
-            if(side == "top"){
-                this.updatePosition(closestPlayer.getX(), closestPlayer.getY(), closestPlayer.getAngle());
-            }
-            else if(side == "bottom"){
-                this.updatePosition(closestPlayer.getX(), closestPlayer.getY(), closestPlayer.getAngle());
-            }
+            this.updatePosition(closestPlayer.getX(), closestPlayer.getY(), closestPlayer.getAngle());
+
         }
 
         final double[] vector = new double[2];
@@ -93,5 +94,26 @@ public class Projectile {
 
     public void setAngle(double angle){
         this.angle = angle;
+    }
+
+    public double getX(){
+        return x;
+    }
+
+    public double getY(){
+        return y;
+    }
+
+    public boolean collide(Player player){
+        return (player.getX() + 10 <= x + radius && player.getX() + 55 >= x + radius &&
+                player.getY() <= y + radius && player.getY() + 70 >= y + radius) && side != player.getSide();
+    }
+
+    public void setLastOwner(Player player){
+        this.lastOwner = player;
+    }
+
+    public Player getLastOwner(){
+        return lastOwner;
     }
 }

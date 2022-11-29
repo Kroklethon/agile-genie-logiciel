@@ -2,6 +2,7 @@ package fr.icom.info.m1.balleauprisonnier_mvn.model;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.shape.Shape;
 
 /**
  * Classe gerant le terrain de jeu.
@@ -27,6 +28,8 @@ public class Field extends Canvas {
     final GraphicsContext gc;
     final int width = 600;
     final int height = 600;
+
+
 
     /**
      * Canvas dans lequel on va dessiner le jeu.
@@ -128,22 +131,49 @@ public class Field extends Canvas {
         Player closestPlayer = null;
         if(side.equals("top")){
             for (Player p : Field.instance.getjoueursTop()) {
-                float distance = (float) Math.sqrt(Math.pow(p.getX() - x, 2) + Math.pow(p.getY() - y, 2));
-                if(distanceMin == -1 || distance < distanceMin){
-                    distanceMin = distance;
-                    closestPlayer = p;
+                if(p != null){
+                    float distance = (float) Math.sqrt(Math.pow(p.getX() - x, 2) + Math.pow(p.getY() - y, 2));
+                    if(distanceMin == -1 || distance < distanceMin){
+                        distanceMin = distance;
+                        closestPlayer = p;
+                    }
                 }
             }
         }
         else{
             for (Player p : Field.instance.getJoueurs()) {
-                float distance = (float) Math.sqrt(Math.pow(p.getX() - x, 2) + Math.pow(p.getY() - y, 2));
-                if(distanceMin == -1 || distance < distanceMin){
-                    distanceMin = distance;
-                    closestPlayer = p;
+                if(p != null){
+                    float distance = (float) Math.sqrt(Math.pow(p.getX() - x, 2) + Math.pow(p.getY() - y, 2));
+                    if(distanceMin == -1 || distance < distanceMin){
+                        distanceMin = distance;
+                        closestPlayer = p;
+                    }
                 }
             }
         }
         return closestPlayer;
+    }
+
+    public void destroyPlayer(Player p){
+        for(int i = 0; i < joueursHumain.length; i++){
+            if(joueursHumain[i] == p){
+                joueursHumain[i] = null;
+            }
+        }
+        for(int i = 0; i < joueursIA.length; i++){
+            if(joueursIA[i] == p){
+                joueursIA[i] = null;
+            }
+        }
+        for(int i = 0; i < joueurs.length; i++){
+            if(joueurs[i] == p){
+                joueurs[i] = null;
+            }
+        }
+        for(int i = 0; i < joueursTop.length; i++){
+            if(joueursTop[i] == p){
+                joueursTop[i] = null;
+            }
+        }
     }
 }
