@@ -69,12 +69,18 @@ public class AIPlayer implements Player{
    
     public void moveLeft()
     {	    
-      if (x > 10 && x < 520) 
-      {
-        
-        spriteAnimate();
-        x -= step;
-      }
+        if (x > 10 && x < 520) 
+        {
+            
+            spriteAnimate();
+            x -= step;
+        }
+        if(x <= 10){
+            x = 11;
+        }
+        if(x >= 520){
+            x = 519;
+        }
     }
 
     /**
@@ -82,11 +88,17 @@ public class AIPlayer implements Player{
      */
     public void moveRight()
     {
-      if (x > 10 && x < 520) 
-      {
-          spriteAnimate();
-          x += step;
-      }
+        if (x > 10 && x < 520) 
+        {
+            spriteAnimate();
+            x += step;
+        }
+        if(x <= 10){
+            x = 11;
+        }
+        if(x >= 520){
+            x = 519;
+        }
     }
 
     // public void calculateNextMove(){
