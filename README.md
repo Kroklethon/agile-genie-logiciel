@@ -16,7 +16,7 @@ Pour installer maven sur votre ordinateur, rendez-vous sur le site suivant: http
 
 Les touches sont en ZQSD pour le joueur du bas et tire avec Espace, le joueur du haut se déplace avec les flèches et tire avec Entrée.
 
-Pour lancer le programme, utilisez la commande ```mvn javafx:run``` dans le dossier du projet.(Appuyez sur Ctrl+Entrée sur Intellij pour lancer la commande)
+Pour lancer le programme, utilisez la commande ```mvn javafx:run``` dans le dossier du projet.(Appuyez sur Ctrl + Entrée sur Intellij pour lancer la commande)
 
 -------------------------------------------------------------------------------------------------
                                            Read me
