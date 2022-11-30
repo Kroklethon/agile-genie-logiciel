@@ -95,7 +95,7 @@ public class Controller{
 							if (i == 1 && input.contains("SPACE") && joueurs[i].getBall() != null) {
 								projectile = joueurs[i].shoot();
 							}
-							if (i == 0 && input.contains("SHIFT") && joueurs[i].getBall() != null) {
+							if (i == 0 && input.contains("ENTER") && joueurs[i].getBall() != null) {
 								projectile = joueurs[i].shoot();
 							}
 
