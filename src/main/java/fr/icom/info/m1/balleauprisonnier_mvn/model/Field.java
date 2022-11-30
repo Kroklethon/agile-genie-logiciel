@@ -2,7 +2,6 @@ package fr.icom.info.m1.balleauprisonnier_mvn.model;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.shape.Shape;
 
 /**
  * Classe gerant le terrain de jeu.
@@ -154,24 +153,32 @@ public class Field extends Canvas {
         return closestPlayer;
     }
 
+    public double distance(Player p1, Player p2){
+        return (float) Math.sqrt(Math.pow(p1.getX() - p2.getX(), 2) + Math.pow(p1.getY() - p2.getY(), 2));   
+    }
+
     public void destroyPlayer(Player p){
         for(int i = 0; i < joueursHumain.length; i++){
             if(joueursHumain[i] == p){
+                joueursHumain[i].getSprite().setVisible(false);
                 joueursHumain[i] = null;
             }
         }
         for(int i = 0; i < joueursIA.length; i++){
             if(joueursIA[i] == p){
+                joueursIA[i].getSprite().setVisible(false);
                 joueursIA[i] = null;
             }
         }
         for(int i = 0; i < joueurs.length; i++){
             if(joueurs[i] == p){
+                joueurs[i].getSprite().setVisible(false);
                 joueurs[i] = null;
             }
         }
         for(int i = 0; i < joueursTop.length; i++){
             if(joueursTop[i] == p){
+                joueursTop[i].getSprite().setVisible(false);
                 joueursTop[i] = null;
             }
         }

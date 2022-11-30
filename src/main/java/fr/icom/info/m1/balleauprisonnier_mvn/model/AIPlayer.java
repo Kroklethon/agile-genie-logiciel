@@ -3,7 +3,6 @@ package fr.icom.info.m1.balleauprisonnier_mvn.model;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.transform.Rotate;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 public class AIPlayer implements Player{
@@ -18,11 +17,12 @@ public class AIPlayer implements Player{
     // On une image globale du joueur 
     Image directionArrow;
     public Sprite sprite;
-    ImageView PlayerDirectionArrow;
     
     GraphicsContext graphicsContext;
     boolean hasTheBall = false;
     Projectile ball;
+
+
     /**
      * Constructeur du Joueur
      * 
@@ -39,19 +39,8 @@ public class AIPlayer implements Player{
 	    playerColor=color;
 		this.side = side;
 	    angle = 0;
-        if(side=="top"){
-        	directionArrow = new Image("assets/PlayerArrowDown.png");
-		}
-		else{
-			directionArrow = new Image("assets/PlayerArrowUp.png");
-		}
+
         
-        PlayerDirectionArrow = new ImageView();
-        PlayerDirectionArrow.setImage(directionArrow);
-        PlayerDirectionArrow.setFitWidth(10);
-        PlayerDirectionArrow.setPreserveRatio(true);
-        PlayerDirectionArrow.setSmooth(true);
-        PlayerDirectionArrow.setCache(true);
 
         Image tilesheetImage = new Image("assets/orc.png");
         sprite = new Sprite(tilesheetImage, 0,0, Duration.seconds(.2), side);
@@ -61,9 +50,8 @@ public class AIPlayer implements Player{
     }
     public void display()
     {
+        //calculateNextMove();
         graphicsContext.save(); // saves the current state on stack, including the current transform
-        rotate(graphicsContext, angle, x + directionArrow.getWidth() / 2, y + directionArrow.getHeight() / 2);
-        graphicsContext.drawImage(directionArrow, x, y);
         graphicsContext.restore(); // back to original state (before rotation)
         if(ball != null){
           ball.updatePosition(x, y, angle);
@@ -83,8 +71,9 @@ public class AIPlayer implements Player{
     {	    
       if (x > 10 && x < 520) 
       {
-          spriteAnimate();
-          x -= step;
+        
+        spriteAnimate();
+        x -= step;
       }
     }
 
@@ -99,6 +88,31 @@ public class AIPlayer implements Player{
           x += step;
       }
     }
+
+    // public void calculateNextMove(){
+    //     // On prend le joueur ennemi le plus proche
+    //     Player closestPlayer = field.getClosestPlayer(x, y, side == "top" ? "bottom" : "top");
+    //     // On calcule la distance entre le joueur et le joueur ennemi
+    //     // Si la distance est inférieur à 100, on se déplace vers le joueur ennemi
+    //     // Sinon on se déplace vers le centre du terrain
+    //     double distance = field.distance(this, closestPlayer);
+    //     if(distance < 100){
+    //         // On se déplace vers le joueur ennemi
+    //         if(x < closestPlayer.getX()){
+    //             moveRight();
+    //         }else{
+    //             moveLeft();
+    //         }
+    //     }else{
+    //         // On se déplace vers le centre du terrain
+    //         if(x < 300){
+    //             moveRight();
+    //         }else{
+    //             moveLeft();
+    //         }
+    //     }
+
+    // }
 
     
     /**

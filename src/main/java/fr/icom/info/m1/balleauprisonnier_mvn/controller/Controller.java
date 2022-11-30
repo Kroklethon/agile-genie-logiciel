@@ -16,9 +16,9 @@ import javafx.scene.paint.Color;
  */
 public class Controller{
 	ArrayList<String> input = new ArrayList<String>();
+	Field field = Field.getInstance();
 
 	public Controller() {
-			Field field = Field.getInstance();
 			GraphicsContext gc = field.getGc();
 			field.setOnKeyPressed(
 					new EventHandler<KeyEvent>() {
@@ -106,25 +106,25 @@ public class Controller{
 							for(Player joueur : joueursIA) {
 								if( joueur != null){
 									if(projectile.collide(joueur) && projectile.getLastOwner() != joueur && joueur.getBall() == null) {
-										System.out.println("Collision");
 										// On detruit le joueur
-										Field.getInstance().destroyPlayer(joueur);
+										field.destroyPlayer(joueur);
 									}
 								}
 							}
 							for(Player joueur : joueurs) {
 								if( joueur != null){
 									if(projectile.collide(joueur) && projectile.getLastOwner() != joueur && joueur.getBall() == null) {
-										System.out.println("Collision");
 										// On detruit le joueur
-										Field.getInstance().destroyPlayer(joueur);
+										field.destroyPlayer(joueur);
 									}
 								}
 							}
 
-							joueurs[i].display();
 							if(joueursIA[i] != null) {
 								joueursIA[i].display();
+							}
+							if(joueurs[i] != null) {
+								joueurs[i].display();
 							}
 							
 						}
