@@ -10,6 +10,6 @@ Ce projet consiste en un mini-jeu de balle aux prisonniers.
 2 équipes, chacune est constituée d'un joueur et de deux bots, le but étant d'éliminer l'équipe adverse.
 La première équipe qui touche l'ensemble de l'autre équipe gagne la partie.
 
-
+Ce jeu a été conçu sur Intellij et contient un fichier maven.
 Les touches sont en Azerty pour le joueur du bas, le joueur du haut se déplace avec les flèches.
 
