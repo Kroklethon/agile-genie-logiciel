@@ -11,5 +11,13 @@ Ce projet consiste en un mini-jeu de balle aux prisonniers.
 La première équipe qui touche l'ensemble de l'autre équipe gagne la partie.
 
 Ce jeu a été conçu sur Intellij et contient un fichier maven.
-Les touches sont en Azerty pour le joueur du bas, le joueur du haut se déplace avec les flèches.
+
+Pour installer maven sur votre ordinateur, rendez-vous sur le site suivant: https://maven.apache.org/download.cgi
+
+Les touches sont en ZQSD pour le joueur du bas et tire avec Espace, le joueur du haut se déplace avec les flèches et tire avec Entrée.
+
+Pour lancer le programme, utilisez la commande ```mvn javafx:run``` dans le dossier du projet.(Appuyez sur Ctrl+Entrée sur Intellij pour lancer la commande)
+
+-------------------------------------------------------------------------------------------------
+                                           Read me
 
